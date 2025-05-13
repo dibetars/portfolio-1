@@ -9,7 +9,7 @@ import { useEffect, useRef, useState } from 'react';
 import { cssProps, media, msToNum, numToMs } from '~/utils/style';
 import { NavToggle } from './nav-toggle';
 import { ThemeToggle } from './theme-toggle';
-import { navLinks, socialLinks } from './nav-data';
+import { navLinks } from './nav-data';
 import config from '~/config.json';
 import styles from './navbar.module.css';
 
@@ -38,79 +38,52 @@ export const Navbar = () => {
 
   // Handle swapping the theme when intersecting with inverse themed elements
   useEffect(() => {
-    const navItems = document.querySelectorAll('[data-navbar-item]');
-    const inverseTheme = theme === 'dark' ? 'light' : 'dark';
-    const { innerHeight } = window;
+    const { current } = headerRef;
+    if (!current) return;
 
-    let inverseMeasurements = [];
-    let navItemMeasurements = [];
-
-    const isOverlap = (rect1, rect2, scrollY) => {
-      return !(rect1.bottom - scrollY < rect2.top || rect1.top - scrollY > rect2.bottom);
+    const navTheme = theme === 'dark' ? 'light' : 'dark';
+    const options = {
+      threshold: 0,
     };
 
-    const resetNavTheme = () => {
-      for (const measurement of navItemMeasurements) {
-        measurement.element.dataset.theme = '';
-      }
-    };
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const { target, isIntersecting } = entry;
+        const isInverse = target.dataset.theme === navTheme;
+        const isVisible = isIntersecting && isInverse;
 
-    const handleInversion = () => {
-      const invertedElements = document.querySelectorAll(
-        `[data-theme='${inverseTheme}'][data-invert]`
-      );
-
-      if (!invertedElements) return;
-
-      inverseMeasurements = Array.from(invertedElements).map(item => ({
-        element: item,
-        top: item.offsetTop,
-        bottom: item.offsetTop + item.offsetHeight,
-      }));
-
-      const { scrollY } = window;
-
-      resetNavTheme();
-
-      for (const inverseMeasurement of inverseMeasurements) {
-        if (
-          inverseMeasurement.top - scrollY > innerHeight ||
-          inverseMeasurement.bottom - scrollY < 0
-        ) {
-          continue;
+        if (isVisible) {
+          current.dataset.theme = navTheme;
+        } else {
+          current.dataset.theme = theme;
         }
-
-        for (const measurement of navItemMeasurements) {
-          if (isOverlap(inverseMeasurement, measurement, scrollY)) {
-            measurement.element.dataset.theme = inverseTheme;
-          } else {
-            measurement.element.dataset.theme = '';
-          }
-        }
-      }
-    };
-
-    // Currently only the light theme has dark full-width elements
-    if (theme === 'light') {
-      navItemMeasurements = Array.from(navItems).map(item => {
-        const rect = item.getBoundingClientRect();
-
-        return {
-          element: item,
-          top: rect.top,
-          bottom: rect.bottom,
-        };
       });
+    }, options);
 
-      document.addEventListener('scroll', handleInversion);
-      handleInversion();
-    }
+    const elements = document.querySelectorAll('[data-theme]');
+    elements.forEach(element => observer.observe(element));
 
     return () => {
-      document.removeEventListener('scroll', handleInversion);
-      resetNavTheme();
+      observer.disconnect();
     };
-  }, [theme, windowSize, location.key]);
+  }, [theme]);
+
+  // Reset the theme when the page changes
+  useEffect(() => {
+    const { current } = headerRef;
+    if (!current) return;
+
+    const resetNavTheme = () => {
+      current.dataset.theme = theme;
+    };
+
+    resetNavTheme();
+    window.addEventListener('popstate', resetNavTheme);
+
+    return () => {
+      window.removeEventListener('popstate', resetNavTheme);
+    };
+  }, [theme, location.key]);
 
   // Check if a nav item should be active
   const getCurrent = (url = '') => {
@@ -140,7 +113,7 @@ export const Navbar = () => {
   };
 
   return (
-    <header className={styles.navbar} ref={headerRef}>
+    <header className={styles.navbar} ref={headerRef} data-theme={theme}>
       <RouterLink
         unstable_viewTransition
         prefetch="intent"
@@ -170,7 +143,17 @@ export const Navbar = () => {
             </RouterLink>
           ))}
         </div>
-        <NavbarIcons desktop />
+        <div className={styles.navIcons}>
+          <a
+            href="https://www.behance.net/dibe-laba"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.navIconLink}
+            aria-label="Behance"
+          >
+            <Icon icon="behance" className={styles.navIcon} />
+          </a>
+        </div>
       </nav>
       <Transition unmount in={menuOpen} timeout={msToNum(tokens.base.durationL)}>
         {({ visible, nodeRef }) => (
@@ -194,7 +177,6 @@ export const Navbar = () => {
                 {label}
               </RouterLink>
             ))}
-            <NavbarIcons />
             <ThemeToggle isMobile />
           </nav>
         )}
@@ -203,21 +185,3 @@ export const Navbar = () => {
     </header>
   );
 };
-
-const NavbarIcons = ({ desktop }) => (
-  <div className={styles.navIcons}>
-    {socialLinks.map(({ label, url, icon }) => (
-      <a
-        key={label}
-        data-navbar-item={desktop || undefined}
-        className={styles.navIconLink}
-        aria-label={label}
-        href={url}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Icon className={styles.navIcon} icon={icon} />
-      </a>
-    ))}
-  </div>
-);

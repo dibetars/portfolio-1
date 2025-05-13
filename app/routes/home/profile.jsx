@@ -1,7 +1,6 @@
 import profileImgLarge from '~/assets/profile-large.jpg';
 import profileImgPlaceholder from '~/assets/profile-placeholder.jpg';
 import profileImg from '~/assets/profile.jpg';
-import { Button } from '~/components/button';
 import { DecoderText } from '~/components/decoder-text';
 import { Divider } from '~/components/divider';
 import { Heading } from '~/components/heading';
@@ -12,7 +11,6 @@ import { Text } from '~/components/text';
 import { Transition } from '~/components/transition';
 import { Fragment, useState } from 'react';
 import { media } from '~/utils/style';
-import katakana from './katakana.svg';
 import styles from './profile.module.css';
 
 const ProfileText = ({ visible, titleId }) => (
@@ -21,16 +19,18 @@ const ProfileText = ({ visible, titleId }) => (
       <DecoderText text="Hi there" start={visible} delay={500} />
     </Heading>
     <Text className={styles.description} data-visible={visible} size="l" as="p">
-      I’m Hamish, currently I live in Sydney working as a senior product designer at{' '}
-      <Link href="https://www.qwilr.com">Qwilr</Link>. My projects include UX design, UI
-      animations, and icon illustration. Being comfortable with code allows me to rapidly
-      prototype and validate experiences. If you’re interested in the tools and software I
-      use check out my <Link href="/uses">uses page</Link>.
+      I'm Dibe, a product and technology lead based in Accra, Ghana, currently shaping impactful digital experiences at{' '}
+      <Link href="https://krontiva.africa">Krontiva Africa</Link> and building tech-enabled platforms across logistics, commerce, and manufacturing.
     </Text>
     <Text className={styles.description} data-visible={visible} size="l" as="p">
-      In my spare time I like to practice Brazilian Jiu Jitsu, play video games, and{' '}
-      <Link href="/projects/volkihar-knight">make mods</Link>. I’m always down for hearing
-      about new projects, so feel free to drop me a line.
+      My work spans product strategy, UX design, backend architecture, and no-code/low-code implementations, with a deep interest in solving African problems using lean, scalable solutions. Recent projects include a WhatsApp-native commerce suite, a geofencing-based delivery assignment system, and a manufacturing insights dashboard.
+    </Text>
+    <Text className={styles.description} data-visible={visible} size="l" as="p">
+      I thrive at the intersection of design, engineering, and business, and I'm constantly refining systems to deliver real outcomes—whether it's automating inventory for small businesses or crafting payment flows from scratch.
+    </Text>
+    <Text className={styles.description} data-visible={visible} size="l" as="p">
+      When I'm not building platforms, I'm mentoring, working on agriculture projects, or experimenting with music at{' '}
+      <Link href="https://www.instagram.com/official.idrcrds">ID RCRDS</Link>. Always open to collaborating, especially on bold ideas that bring structure to chaos.
     </Text>
   </Fragment>
 );
@@ -55,15 +55,6 @@ export const Profile = ({ id, visible, sectionRef }) => {
           <div className={styles.content} ref={nodeRef}>
             <div className={styles.column}>
               <ProfileText visible={visible} titleId={titleId} />
-              <Button
-                secondary
-                className={styles.button}
-                data-visible={visible}
-                href="/contact"
-                icon="send"
-              >
-                Send me a message
-              </Button>
             </div>
             <div className={styles.column}>
               <div className={styles.tag} aria-hidden>
@@ -86,11 +77,8 @@ export const Profile = ({ id, visible, sectionRef }) => {
                   width={960}
                   height={1280}
                   sizes={`(max-width: ${media.mobile}px) 100vw, 480px`}
-                  alt="Me smiling like a goofball at the Qwilr office in Sydney"
+                  alt="Dibe Laba, Product and Technology Lead at Krontiva Africa"
                 />
-                <svg className={styles.svg} data-visible={visible} viewBox="0 0 136 766">
-                  <use href={`${katakana}#katakana-profile`} />
-                </svg>
               </div>
             </div>
           </div>

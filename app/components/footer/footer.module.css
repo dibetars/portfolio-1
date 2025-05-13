@@ -21,4 +21,9 @@
     padding-right: var(--spaceXS);
     display: inline-flex;
   }
+
+  .designCredit {
+    padding-left: var(--spaceXS);
+    display: inline-flex;
+  }
 }

@@ -10,6 +10,15 @@ import sliceTexture from '~/assets/slice-app.jpg';
 import sprTextureLarge from '~/assets/spr-lesson-builder-dark-large.jpg';
 import sprTexturePlaceholder from '~/assets/spr-lesson-builder-dark-placeholder.jpg';
 import sprTexture from '~/assets/spr-lesson-builder-dark.jpg';
+import KBFTexture from '~/assets/KBF003.png';
+import KBFTextureLarge from '~/assets/KBF003.png';
+import KBFTexturePlaceholder from '~/assets/KBF003.png';
+import MNTexture from '~/assets/MN003.png';
+import MNTextureLarge from '~/assets/MN003.png';
+import MNTexturePlaceholder from '~/assets/MN003.png';
+import DLTexture from '~/assets/DL001.png';
+import DLTextureLarge from '~/assets/DL002.png';
+import DLTexturePlaceholder from '~/assets/DL001.png';
 import { Footer } from '~/components/footer';
 import { baseMeta } from '~/utils/meta';
 import { Intro } from './intro';
@@ -42,7 +51,7 @@ export const links = () => {
 export const meta = () => {
   return baseMeta({
     title: 'Designer + Developer',
-    description: `Design portfolio of ${config.name} — a product designer working on web & mobile apps with a focus on motion, experience design, and accessibility.`,
+    description: `Portfolio of Dibe Laba — a product designer working on web & mobile apps with a focus on transformation.`,
   });
 };
 
@@ -103,17 +112,17 @@ export const Home = () => {
         sectionRef={projectOne}
         visible={visibleSections.includes(projectOne.current)}
         index={1}
-        title="Designing the future of education"
-        description="Designing a platform to help educators build better online courseware"
-        buttonText="View project"
-        buttonLink="/projects/smart-sparrow"
+        title="Kwame Bofrot Foundation Platform"
+        description="A structured and centralized player database to support scouting, recruitment, and talent development efforts by documenting key information about young football players."
+        buttonText="View website"
+        buttonLink="https://www.kwamebofrotfoundation.org/home"
         model={{
           type: 'laptop',
-          alt: 'Smart Sparrow lesson builder',
+          alt: 'Kwame Bofrot Foundation Platform screenshot',
           textures: [
             {
-              srcSet: `${sprTexture} 1280w, ${sprTextureLarge} 2560w`,
-              placeholder: sprTexturePlaceholder,
+              srcSet: `${KBFTexture} 1280w, ${KBFTextureLarge} 2560w`,
+              placeholder: KBFTexturePlaceholder,
             },
           ],
         }}
@@ -124,21 +133,21 @@ export const Home = () => {
         sectionRef={projectTwo}
         visible={visibleSections.includes(projectTwo.current)}
         index={2}
-        title="Video game progress tracking"
-        description="Design and development for a video game tracking app built in React Native"
+        title="Delika Rider"
+        description="A rider-facing application within the Delika platform, which is a tech-enabled food delivery and logistics service. The app provides real-time order tracking, route optimization, and seamless communication between riders and customers."
         buttonText="View website"
-        buttonLink="https://gamestack.hamishw.com"
+        buttonLink="https://delika.app"
         model={{
           type: 'phone',
-          alt: 'App login screen',
+          alt: 'Delika Rider mobile application interface',
           textures: [
             {
-              srcSet: `${gamestackTexture} 375w, ${gamestackTextureLarge} 750w`,
-              placeholder: gamestackTexturePlaceholder,
+              srcSet: `${DLTexture} 375w, ${DLTextureLarge} 750w`,
+              placeholder: DLTexturePlaceholder,
             },
             {
-              srcSet: `${gamestackTexture2} 375w, ${gamestackTexture2Large} 750w`,
-              placeholder: gamestackTexture2Placeholder,
+              srcSet: `${DLTextureLarge} 375w, ${DLTexture} 750w`,
+              placeholder: DLTexturePlaceholder,
             },
           ],
         }}
@@ -148,17 +157,15 @@ export const Home = () => {
         sectionRef={projectThree}
         visible={visibleSections.includes(projectThree.current)}
         index={3}
-        title="Biomedical image collaboration"
-        description="Increasing the amount of collaboration in Slice, an app for biomedical imaging"
-        buttonText="View project"
-        buttonLink="/projects/slice"
+        title="Manutrax (In Progress)"
+        description="Manufacturing Process Visualization ERP. Designed modules for inventory tracking, flow charts, and real-time data monitoring. Built backend to support custom factory pipelines. Introduced AI insights for operational efficiency (KPI flags and bottleneck alerts)."
         model={{
           type: 'laptop',
-          alt: 'Annotating a biomedical image in the Slice app',
+          alt: 'Manutrax Manufacturing Process Visualization ERP',
           textures: [
             {
-              srcSet: `${sliceTexture} 800w, ${sliceTextureLarge} 1920w`,
-              placeholder: sliceTexturePlaceholder,
+              srcSet: `${MNTexture} 1280w, ${MNTextureLarge} 2560w`,
+              placeholder: MNTexturePlaceholder,
             },
           ],
         }}
