@@ -23,7 +23,8 @@
     "react-dom": "^18.2.0",
     "rehype-img-size": "^1.0.1",
     "rehype-slug": "^6.0.0",
-    "remark-frontmatter": "^5.0.0"
+    "remark-frontmatter": "^5.0.0",
+    "remark-mdx-frontmatter": "^5.1.0"
   },
   "devDependencies": {
     "@csstools/postcss-global-data": "^2.1.1",
