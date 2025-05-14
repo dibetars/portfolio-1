@@ -12,8 +12,15 @@
   ],
   "routes": [
     {
+      "src": "/build/(.*)",
+      "dest": "/build/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "build/server/index.js"
+      "dest": "/build/server/index.js"
     }
-  ]
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
 } 
