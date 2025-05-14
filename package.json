@@ -1,48 +1,35 @@
 {
   "name": "portfolio",
   "homepage": "https://dibelaba.com",
-  "description": "Portfolio site for Dibe Laba",
-  "repository": "https://github.com/dibelaba/portfolio.git",
+  "description": "Personal portfolio website",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dibelaba/portfolio"
+  },
   "author": "Dibe Laba",
-  "sideEffects": false,
-  "type": "module",
   "scripts": {
-    "build": "remix vite:build",
+    "build": "NODE_OPTIONS='--max-old-space-size=4096' remix vite:build",
     "dev": "remix vite:dev",
-    "start": "wrangler pages dev ./build/client",
-    "deploy": "npm run build && wrangler pages deploy ./build/client --project-name portfolio"
+    "start": "remix-serve ./build/server/index.js",
+    "typecheck": "tsc"
   },
   "dependencies": {
-    "@mdx-js/react": "^3.0.1",
-    "@remix-run/cloudflare": "^2.7.1",
-    "@remix-run/cloudflare-pages": "^2.7.1",
-    "@remix-run/react": "^2.7.1",
-    "framer-motion": "11.0.5",
-    "isbot": "^4.1.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "rehype-img-size": "^1.0.1",
-    "rehype-slug": "^6.0.0",
-    "remark-frontmatter": "^5.0.0",
-    "remark-mdx-frontmatter": "^5.1.0"
+    "@aws-sdk/client-ses": "^3.0.0",
+    "@mdx-js/react": "^2.0.0",
+    "@remix-run/cloudflare": "^2.0.0",
+    "@remix-run/react": "^2.0.0",
+    "@remix-run/serve": "^2.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "three": "^0.150.0",
+    "three-stdlib": "^2.0.0"
   },
   "devDependencies": {
-    "@csstools/postcss-global-data": "^2.1.1",
-    "@mapbox/rehype-prism": "^0.9.0",
-    "@mdx-js/rollup": "^3.0.1",
-    "@remix-run/dev": "^2.7.1",
-    "eslint": "^8.56.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-jsx-a11y": "^6.8.0",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "postcss": "^8.4.33",
-    "postcss-custom-media": "^10.0.2",
-    "vite": "^5.1.0",
-    "vite-jsconfig-paths": "^2.0.1",
-    "vite-tsconfig-paths": "^5.1.4",
-    "wrangler": "^4.15.0"
+    "@remix-run/dev": "^2.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^5.0.0"
   },
   "engines": {
     "node": ">=19.9.0"

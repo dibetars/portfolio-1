@@ -3,5 +3,17 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "remix",
-  "outputDirectory": "build/client"
+  "outputDirectory": "build/client",
+  "builds": [
+    {
+      "src": "build/server/index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "build/server/index.js"
+    }
+  ]
 } 
