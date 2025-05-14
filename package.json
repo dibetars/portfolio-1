@@ -1,41 +1,37 @@
 {
-  "name": "portfolio",
-  "homepage": "https://dibelaba.com",
-  "description": "Personal portfolio website",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/dibelaba/portfolio"
-  },
-  "author": "Dibe Laba",
+  "name": "react-portfolio-template",
+  "version": "3.0",
+  "private": true,
   "scripts": {
-    "build": "NODE_OPTIONS='--max-old-space-size=4096' remix vite:build",
-    "dev": "remix vite:dev",
-    "start": "remix-serve ./build/server/index.js",
-    "typecheck": "tsc"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "@aws-sdk/client-ses": "^3.0.0",
-    "@mdx-js/react": "^2.0.0",
-    "@remix-run/cloudflare": "^2.0.0",
-    "@remix-run/cloudflare-pages": "^2.0.0",
-    "@remix-run/react": "^2.0.0",
-    "@remix-run/serve": "^2.0.0",
-    "isbot": "^3.6.8",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "three": "^0.150.0",
-    "three-stdlib": "^2.0.0"
+    "@headlessui/react": "^1.6.6",
+    "autoprefixer": "^10.4.7",
+    "custom-cursor-react": "^1.0.5",
+    "gray-matter": "^4.0.3",
+    "gsap": "^3.10.4",
+    "next": "12.1.6",
+    "next-themes": "^0.2.0",
+    "parse-numeric-range": "^1.3.0",
+    "postcss": "^8.4.13",
+    "react": "18.1.0",
+    "react-datepicker": "^4.8.0",
+    "react-dom": "18.1.0",
+    "react-markdown": "^8.0.3",
+    "react-syntax-highlighter": "^15.5.0",
+    "react-textarea-autosize": "^8.3.4",
+    "remark": "^14.0.2",
+    "remark-html": "^15.0.1",
+    "styled-components": "^5.3.5",
+    "tailwindcss": "^3.0.24",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "@remix-run/dev": "^2.0.0",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "typescript": "^5.0.0",
-    "vite": "^5.0.0",
-    "vite-jsconfig-paths": "^4.0.0",
-    "vite-tsconfig-paths": "^4.0.0"
-  },
-  "engines": {
-    "node": ">=19.9.0"
+    "eslint": "8.15.0",
+    "eslint-config-next": "12.1.6"
   }
 }
