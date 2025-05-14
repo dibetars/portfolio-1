@@ -41,6 +41,7 @@
     "postcss-custom-media": "^10.0.2",
     "vite": "^5.1.0",
     "vite-jsconfig-paths": "^2.0.1",
+    "vite-tsconfig-paths": "^5.1.4",
     "wrangler": "^4.15.0"
   },
   "engines": {

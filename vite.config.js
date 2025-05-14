@@ -10,11 +10,15 @@ import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import rehypeImgSize from 'rehype-img-size';
 import rehypeSlug from 'rehype-slug';
 import rehypePrism from '@mapbox/rehype-prism';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
   assetsInclude: ['**/*.glb', '**/*.hdr', '**/*.glsl'],
   build: {
     assetsInlineLimit: 1024,
+    rollupOptions: {
+      external: ['@aws-sdk/client-ses', 'three', 'three-stdlib']
+    }
   },
   server: {
     port: 7777,
@@ -34,5 +38,6 @@ export default defineConfig({
       },
     }),
     jsconfigPaths(),
+    tsconfigPaths(),
   ],
 });
